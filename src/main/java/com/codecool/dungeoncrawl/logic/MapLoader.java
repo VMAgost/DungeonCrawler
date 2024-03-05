@@ -5,6 +5,8 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.items.Key;
+import com.codecool.dungeoncrawl.data.items.Sword;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -27,6 +29,14 @@ public class MapLoader {
                     switch (line.charAt(x)) {
                         case ' ':
                             cell.setType(CellType.EMPTY);
+                            break;
+                        case 'k':
+                            cell.setType(CellType.FLOOR);
+                            new Key(cell, "black key");
+                            break;
+                        case 'i':
+                            cell.setType(CellType.FLOOR);
+                            new Sword(cell, "black sword");
                             break;
                         case '#':
                             cell.setType(CellType.WALL);

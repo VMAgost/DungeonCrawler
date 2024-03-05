@@ -13,7 +13,13 @@ public  abstract class Item implements Drawable {
         this.cell.setItem(this);
     }
 
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", cell=" + cell +
+                '}';
+    }
 
     public String getName() {
         return name;

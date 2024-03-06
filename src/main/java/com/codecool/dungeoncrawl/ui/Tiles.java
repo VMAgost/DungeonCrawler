@@ -34,6 +34,8 @@ public class Tiles {
         tileMap.put("evilSorcerer", new Tile(26, 9));
         tileMap.put("black sword", new Tile(0, 28));
         tileMap.put("black key", new Tile(16, 23));
+        tileMap.put("closed door", new Tile(10,9));
+        tileMap.put("open door", new Tile(9,9));
         tileMap.put("teleport", new Tile(23,4));
     }
 

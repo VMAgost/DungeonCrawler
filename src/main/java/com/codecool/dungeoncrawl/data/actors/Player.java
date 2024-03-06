@@ -1,9 +1,13 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.mapObjects.Door;
+import com.codecool.dungeoncrawl.ui.Tiles;
+import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.items.TeleportCrystal;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,10 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
+            // Door
+            if (nextCell.getDoor() instanceof Door && this.hasKey){
+                nextCell.getDoor().setOpen();
+            }
             // Attack
             if (nextCell.getActor() instanceof Enemy) {
                 System.out.println("Skeleton found");

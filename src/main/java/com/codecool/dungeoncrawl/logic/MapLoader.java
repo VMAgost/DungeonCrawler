@@ -9,6 +9,7 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
+import com.codecool.dungeoncrawl.data.mapObjects.Door;
 import com.codecool.dungeoncrawl.data.items.TeleportCrystal;
 
 import java.io.InputStream;
@@ -63,6 +64,17 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
+
+                        case 'd':
+                                cell.setType(CellType.WALL);
+                                new Door(cell);
+                            if (cell.getTileName().equals("open door")){
+                                cell.setType(CellType.FLOOR);
+                                new Door(cell);
+                            }
+                            cell.setType(CellType.WALL);
+                            new Door(cell);
+
                         case 't':
                             cell.setType(CellType.FLOOR);
                             new TeleportCrystal(cell, "teleport");

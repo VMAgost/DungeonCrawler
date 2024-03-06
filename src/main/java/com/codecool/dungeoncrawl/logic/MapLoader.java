@@ -54,27 +54,27 @@ public class MapLoader {
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
-                            new Ghost(cell);
+                            map.setGhost(new Ghost(cell));
                             break;
                         case 'e':
                             cell.setType(CellType.FLOOR);
-                            new EvilSorcerer(cell);
+                            map.setEvilSorcerer(new EvilSorcerer(cell));
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
-
                         case 'd':
                                 cell.setType(CellType.WALL);
                                 new Door(cell);
                             if (cell.getTileName().equals("open door")){
                                 cell.setType(CellType.FLOOR);
                                 new Door(cell);
+                                break;
                             }
                             cell.setType(CellType.WALL);
                             new Door(cell);
-
+                            break;
                         case 't':
                             cell.setType(CellType.FLOOR);
                             new TeleportCrystal(cell, "teleport");

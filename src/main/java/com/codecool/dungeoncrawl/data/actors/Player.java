@@ -40,7 +40,7 @@ public class Player extends Actor {
             }
             // Attack
             if (nextCell.getActor() instanceof Enemy) {
-                System.out.println("Skeleton found");
+                System.out.println("Enemy found");
                 nextCell.getActor().setHealth(nextCell.getActor().getHealth() - this.attack);
                 System.out.println(nextCell.getActor().getHealth());
                 if (nextCell.getActor().getHealth() <= 0) {

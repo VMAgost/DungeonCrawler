@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 
 public class EvilSorcerer extends Actor {
     public EvilSorcerer(Cell cell) {
-        super(cell);
+        super(cell,6, 20);
     }
 
     @Override

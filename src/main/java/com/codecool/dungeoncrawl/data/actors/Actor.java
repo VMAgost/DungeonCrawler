@@ -5,11 +5,14 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Actor implements Drawable {
     protected Cell cell;
-    private int health = 10;
+    private int health ;
+    protected int attack;
 
-    public Actor(Cell cell) {
+    public Actor(Cell cell, int attack, int health) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.attack = attack;
+        this.health = health;
     }
 
     public void move(int dx, int dy) {
@@ -33,6 +36,10 @@ public abstract class Actor implements Drawable {
 
     public int getX() {
         return cell.getX();
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public int getY() {

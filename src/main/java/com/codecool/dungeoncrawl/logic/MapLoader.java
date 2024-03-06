@@ -64,6 +64,12 @@ public class MapLoader {
                             map.setPlayer(new Player(cell));
                             break;
                         case 'd':
+                                cell.setType(CellType.WALL);
+                                new Door(cell);
+                            if (cell.getTileName().equals("open door")){
+                                cell.setType(CellType.FLOOR);
+                                new Door(cell);
+                            }
                             cell.setType(CellType.WALL);
                             new Door(cell);
                             break;

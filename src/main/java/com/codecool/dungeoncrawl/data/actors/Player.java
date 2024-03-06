@@ -28,7 +28,7 @@ public class Player extends Actor {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
             // Attack
-            if (nextCell.getActor() instanceof Skeleton) {
+            if (nextCell.getActor() instanceof Enemy) {
                 System.out.println("Skeleton found");
                 nextCell.getActor().setHealth(nextCell.getActor().getHealth() - this.attack);
                 System.out.println(nextCell.getActor().getHealth());

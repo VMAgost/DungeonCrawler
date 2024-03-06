@@ -12,7 +12,7 @@ public class Player extends Actor {
     private boolean hasKey = false;
 
     public Player(Cell cell) {
-        super(cell);
+        super(cell, 5, 30);
     }
 
     public String getTileName() {
@@ -27,27 +27,40 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
-            //Attack
-            if (nextCell.getActor() instanceof Skeleton) {
+            // Attack
+            if (nextCell.getActor() instanceof Enemy) {
                 System.out.println("Skeleton found");
-                nextCell.getActor().setHealth(nextCell.getActor().getHealth() - 5);
+                nextCell.getActor().setHealth(nextCell.getActor().getHealth() - this.attack);
                 System.out.println(nextCell.getActor().getHealth());
                 if (nextCell.getActor().getHealth() <= 0) {
                     nextCell.setActor(null);   // Monster dies
                 } else {
-                    this.setHealth(this.getHealth() - 2);  // Player lose health
+                    this.setHealth(this.getHealth() - nextCell.getActor().attack);  // Player lose health
                     System.out.println(this.getHealth());
                 }
             }
         } else {
-            //Movement
+            // Movement
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
             if (nextCell.getItem() != null) {
                 inventory.add(nextCell.getItem());
                 nextCell.setItem(null);
-                System.out.println(inventory.get(inventory.size() - 1).getName());
+                for (Item item : inventory) {
+                    if (item.getName().equals("black sword")) {
+                        this.setAttack(10);
+                        System.out.println("Attack: " + this.attack);
+                        break;
+                    }
+                }
+                for (Item item : inventory) {
+                    if (item.getName().equals("black key")) {
+                        hasKey = true;
+                        System.out.println("Now can open doors");
+                        break;
+                    }
+                }
             }
         }
     }

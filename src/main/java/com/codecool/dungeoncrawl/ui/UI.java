@@ -55,9 +55,10 @@ public class UI {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
-                }
-                else if (cell.getItem() != null) {
+                } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
+                } else if (cell.getDoor() != null) {
+                    Tiles.drawTile(context, cell.getDoor(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
                 }

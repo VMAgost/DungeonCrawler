@@ -9,6 +9,8 @@ import java.util.List;
 public class Player extends Actor {
     private List<Item> inventory = new ArrayList<>();
 
+    private boolean hasKey = false;
+
     public Player(Cell cell) {
         super(cell);
     }

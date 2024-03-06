@@ -2,7 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class EvilSorcerer extends Actor {
+public class EvilSorcerer extends Enemy {
     public EvilSorcerer(Cell cell) {
         super(cell,6, 20);
     }

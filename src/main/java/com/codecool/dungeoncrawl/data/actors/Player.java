@@ -5,9 +5,13 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
 import com.codecool.dungeoncrawl.ui.Tiles;
+import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.items.TeleportCrystal;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Player extends Actor {
     private List<Item> inventory = new ArrayList<>();
@@ -65,6 +69,25 @@ public class Player extends Actor {
                     if (item.getName().equals("black key")) {
                         hasKey = true;
                         System.out.println("Now can open doors");
+                        break;
+                    }
+                }
+                for (Item item : inventory) {
+                    if (item.getName().equals("teleport")) {
+                        System.out.println("...teleporting...");
+                        inventory.remove(item);
+                        boolean teleporting = true;
+                        while (teleporting) {
+                            int randX = new Random().nextInt(2);
+                            int randY = new Random().nextInt(2);
+                            if (cell.getNeighbor(randX, randY).getTileName().equals("floor")) {
+                                nextCell = cell.getNeighbor(randX, randY);
+                                teleporting = false;
+                            }
+                        }
+                        nextCell.setActor(this);
+                        cell.setActor(null);
+                        cell = nextCell;
                         break;
                     }
                 }

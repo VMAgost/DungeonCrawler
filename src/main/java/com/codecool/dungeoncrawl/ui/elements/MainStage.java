@@ -30,6 +30,10 @@ public class MainStage {
         this.statusPane.setHealthValue(text);
     }
 
+    public void setMaxHealthLabelText(String text) {
+        this.statusPane.setMaxHealthValue(text);
+    }
+
     public void setInventoryLabelText(String text){
         this.statusPane.setInventoryValue(text);
     }

@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 public class GameLogic {
+    public Object getPlayerMaxHealth;
     private GameMap map;
 
     public GameLogic() {
@@ -28,6 +29,10 @@ public class GameLogic {
 
     public String getPlayerHealth() {
         return Integer.toString(map.getPlayer().getHealth());
+    }
+
+    public String getPlayerMaxHealth() {
+        return Integer.toString(map.getPlayer().getMaxHealth());
     }
 
     public String getPlayerInventory(){

@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.items.Sword;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
 
 import java.util.ArrayList;
@@ -14,12 +15,21 @@ public class Player extends Actor {
     private List<Item> inventory = new ArrayList<>();
 
     private boolean hasKey = false;
+
     public Player(Cell cell, int maxHealth) {
+
+    private boolean hasSword = false;
+
+    public Player(Cell cell) {
         super(cell, 5, 30);
         this.maxHealth = maxHealth;
     }
     public String getTileName() {
+        if (this.hasSword){
+            return "player+sword";
+        } else {
         return "player";
+        }
     }
     public int getMaxHealth() {
         return maxHealth;
@@ -36,8 +46,13 @@ public class Player extends Actor {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
             // Door
-            if (nextCell.getDoor() instanceof Door && this.hasKey){
+            if (nextCell.getDoor() != null && this.hasKey){
                 nextCell.getDoor().setOpen();
+            } else if (nextCell.getDoor() != null && this.hasSword){
+                nextCell.getDoor().attackDoor();
+                if (nextCell.getDoor().getBreakAttempts() == 5){
+                    nextCell.getDoor().breakOpen();
+                }
             }
             // Attack
             if (nextCell.getActor() instanceof Enemy) {
@@ -61,6 +76,7 @@ public class Player extends Actor {
                 nextCell.setItem(null);
                 for (Item item : inventory) {
                     if (item.getName().equals("black sword")) {
+                        hasSword = true;
                         this.setAttack(10);
                         System.out.println("Attack: " + this.attack);
                     } if (item.getName().equals("enchanted ring")) {
@@ -84,8 +100,8 @@ public class Player extends Actor {
                         inventory.remove(item);
                         boolean teleporting = true;
                         while (teleporting) {
-                            int randX = new Random().nextInt(2);
-                            int randY = new Random().nextInt(2);
+                            int randX = new Random().nextInt(19);
+                            int randY = new Random().nextInt(5);
                             if (cell.getNeighbor(randX, randY).getTileName().equals("floor")) {
                                 nextCell = cell.getNeighbor(randX, randY);
                                 teleporting = false;

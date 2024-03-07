@@ -23,6 +23,7 @@ public class EvilSorcerer extends Enemy {
         do {
             x = random.nextInt(cell.getGameMap().getWidth());
             y = random.nextInt(cell.getGameMap().getHeight());
+
             newCell = cell.getGameMap().getCell(x, y);
         } while (newCell.getActor() != null || !newCell.getTileName().equals("floor"));
 

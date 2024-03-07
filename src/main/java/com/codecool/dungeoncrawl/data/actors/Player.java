@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.mapObjects.Door;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,33 @@ public class Player extends Actor {
         return inventory;
     }
 
+    private void interactWithDoor(Cell nextCell) {
+        Door door = nextCell.getDoor();
+        if (door != null) {
+            if (this.hasKey) {
+                door.setOpen();
+            } else if (this.hasSword) {
+                door.attackDoor();
+                if (door.getBreakAttempts() == 5) {
+                    door.breakOpen();
+                }
+            }
+        }
+    }
+
+    private void attackEnemy(Enemy enemy) {
+        System.out.println("Enemy found");
+        enemy.setHealth(enemy.getHealth() - this.attack);
+        System.out.println(enemy.getHealth());
+        if (enemy.getHealth() <= 0) {
+            enemy.getCell().setActor(null);
+            System.out.println("Enemy defeated!");
+        } else {
+            this.setHealth(this.getHealth() - enemy.attack);
+            System.out.println("Player health: " + this.getHealth());
+        }
+    }
+
     @Override
     public void move(int dx, int dy) {
 
@@ -50,26 +78,14 @@ public class Player extends Actor {
             Cell nextCell = cell.getNeighbor(dx, dy);
             if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
                 // Door
-                if (nextCell.getDoor() != null && this.hasKey) {
-                    nextCell.getDoor().setOpen();
-                } else if (nextCell.getDoor() != null && this.hasSword) {
-                    nextCell.getDoor().attackDoor();
-                    if (nextCell.getDoor().getBreakAttempts() == 5) {
-                        nextCell.getDoor().breakOpen();
-                    }
-                }
+                interactWithDoor(nextCell);
                 // Attack
+
                 if (nextCell.getActor() instanceof Enemy) {
-                    System.out.println("Enemy found");
-                    nextCell.getActor().setHealth(nextCell.getActor().getHealth() - this.attack);
-                    System.out.println(nextCell.getActor().getHealth());
-                    if (nextCell.getActor().getHealth() <= 0) {
-                        nextCell.setActor(null);   // Monster dies
-                    } else {
-                        this.setHealth(this.getHealth() - nextCell.getActor().attack);  // Player lose health
-                        System.out.println(this.getHealth());
-                    }
+                    Enemy enemy = (Enemy) nextCell.getActor();
+                    attackEnemy(enemy);
                 }
+
             } else {
                 // FrostDamage
                 if (nextCell.getFrost() != null) {

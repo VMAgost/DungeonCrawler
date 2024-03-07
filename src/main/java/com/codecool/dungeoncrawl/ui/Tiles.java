@@ -29,16 +29,18 @@ public class Tiles {
         tileMap.put("wall", new Tile(10, 17));
         tileMap.put("floor", new Tile(2, 0));
         tileMap.put("player", new Tile(30, 0));
-        tileMap.put("player+sword", new Tile(31,0));
+        tileMap.put("player+sword", new Tile(31, 0));
         tileMap.put("skeleton", new Tile(29, 6));
         tileMap.put("ghost", new Tile(27, 8));
         tileMap.put("evilSorcerer", new Tile(26, 9));
         tileMap.put("black sword", new Tile(0, 28));
         tileMap.put("black key", new Tile(16, 23));
-        tileMap.put("closed door", new Tile(10,9));
-        tileMap.put("open door", new Tile(9,9));
-        tileMap.put("broken door", new Tile(17,11));
-        tileMap.put("teleport", new Tile(23,4));
+        tileMap.put("closed door", new Tile(10, 9));
+        tileMap.put("open door", new Tile(9, 9));
+        tileMap.put("broken door", new Tile(17, 11));
+        tileMap.put("teleport", new Tile(23, 4));
+        tileMap.put("frost", new Tile(20, 23));
+        tileMap.put("dead", new Tile(1, 14));
         tileMap.put("enchanted ring", new Tile(14, 28));
     }
 

@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.data.actors.EvilSorcerer;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.items.EnchantedRing;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
@@ -42,6 +43,10 @@ public class MapLoader {
                         case 'i':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell, "black sword");
+                            break;
+                        case 'r':
+                            cell.setType(CellType.FLOOR);
+                            new EnchantedRing(cell, "enchanted ring");
                             break;
                         case '#':
                             cell.setType(CellType.WALL);

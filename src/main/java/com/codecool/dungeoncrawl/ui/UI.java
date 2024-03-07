@@ -59,7 +59,9 @@ public class UI {
                     Tiles.drawTile(context, cell.getItem(), x, y);
                 } else if (cell.getDoor() != null) {
                     Tiles.drawTile(context, cell.getDoor(), x, y);
-                } else {
+                } else if (cell.getFrost() != null) {
+                    Tiles.drawTile(context, cell.getFrost(), x, y);
+                }else {
                     Tiles.drawTile(context, cell, x, y);
                 }
             }

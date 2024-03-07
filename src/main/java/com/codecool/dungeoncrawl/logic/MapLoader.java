@@ -11,6 +11,7 @@ import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
 import com.codecool.dungeoncrawl.data.items.TeleportCrystal;
+import com.codecool.dungeoncrawl.data.mapObjects.Frost;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -78,6 +79,10 @@ public class MapLoader {
                         case 't':
                             cell.setType(CellType.FLOOR);
                             new TeleportCrystal(cell, "teleport");
+                            break;
+                        case 'f':
+                            cell.setType(CellType.FLOOR);
+                            new Frost(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

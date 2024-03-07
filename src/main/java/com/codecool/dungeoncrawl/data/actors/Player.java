@@ -17,6 +17,9 @@ public class Player extends Actor {
     private boolean hasKey = false;
 
     public Player(Cell cell, int maxHealth) {
+        super(cell, 5, maxHealth);
+        this.maxHealth = maxHealth;
+    }
 
     private boolean hasSword = false;
 

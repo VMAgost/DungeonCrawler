@@ -39,6 +39,7 @@ public class Tiles {
         tileMap.put("open door", new Tile(9,9));
         tileMap.put("broken door", new Tile(17,11));
         tileMap.put("teleport", new Tile(23,4));
+        tileMap.put("enchanted ring", new Tile(14, 28));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

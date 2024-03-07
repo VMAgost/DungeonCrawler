@@ -1,29 +1,29 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
-import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.data.items.Sword;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
-import com.codecool.dungeoncrawl.ui.Tiles;
-import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.items.TeleportCrystal;
-
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Player extends Actor {
+    private int maxHealth;
+
     private List<Item> inventory = new ArrayList<>();
 
     private boolean hasKey = false;
+
+    public Player(Cell cell, int maxHealth) {
+
     private boolean hasSword = false;
 
     public Player(Cell cell) {
         super(cell, 5, 30);
+        this.maxHealth = maxHealth;
     }
-
     public String getTileName() {
         if (this.hasSword){
             return "player+sword";
@@ -31,7 +31,12 @@ public class Player extends Actor {
         return "player";
         }
     }
-
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
     public List<Item> getInventory() {
         return inventory;
     }
@@ -74,7 +79,12 @@ public class Player extends Actor {
                         hasSword = true;
                         this.setAttack(10);
                         System.out.println("Attack: " + this.attack);
-                        break;
+                    } if (item.getName().equals("enchanted ring")) {
+                        // Double the current health and max health
+                        this.setHealth(this.getHealth() * 2);
+                        this.setMaxHealth(this.getMaxHealth() * 2);
+                        System.out.println(this.getHealth());
+                        System.out.println(this.getMaxHealth());
                     }
                 }
                 for (Item item : inventory) {

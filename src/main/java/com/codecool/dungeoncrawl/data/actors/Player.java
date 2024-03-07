@@ -43,6 +43,33 @@ public class Player extends Actor {
         return inventory;
     }
 
+    private void attackEnemy(Enemy enemy) {
+        System.out.println("Enemy found");
+        enemy.setHealth(enemy.getHealth() - this.attack);
+        System.out.println(enemy.getHealth());
+        if (enemy.getHealth() <= 0) {
+            enemy.getCell().setActor(null);
+            System.out.println("Enemy defeated!");
+        } else {
+            this.setHealth(this.getHealth() - enemy.attack);
+            System.out.println("Player health: " + this.getHealth());
+        }
+    }
+
+    private void interactWithDoor(Cell nextCell) {
+        Door door = nextCell.getDoor();
+        if (door != null) {
+            if (this.hasKey) {
+                door.setOpen();
+            } else if (this.hasSword) {
+                door.attackDoor();
+                if (door.getBreakAttempts() == 5) {
+                    door.breakOpen();
+                }
+            }
+        }
+    }
+
 
     public void move(int dx, int dy) {
 
@@ -52,8 +79,8 @@ public class Player extends Actor {
             if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
                 // Door
                 interactWithDoor(nextCell);
-                // Attack
 
+                // Attack
                 if (nextCell.getActor() instanceof Enemy) {
                     Enemy enemy = (Enemy) nextCell.getActor();
                     attackEnemy(enemy);

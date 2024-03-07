@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.items.Inventory;
 import com.codecool.dungeoncrawl.data.items.Item;
 import com.codecool.dungeoncrawl.data.mapObjects.Door;
 
@@ -10,18 +11,15 @@ import java.util.Random;
 
 public class Player extends Actor {
     private int maxHealth;
-
-    private final List<Item> inventory;
-
+    private Inventory inventory;
     private boolean hasKey = false;
+    private boolean hasSword = false;
 
     public Player(Cell cell) {
         super(cell, 5, 30);
         this.maxHealth = 30;
-        this.inventory = new ArrayList<>();
+        this.inventory = new Inventory();
     }
-
-    private boolean hasSword = false;
 
     public String getTileName() {
         if (this.hasSword) {
@@ -39,7 +37,7 @@ public class Player extends Actor {
         this.maxHealth = maxHealth;
     }
 
-    public List<Item> getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
@@ -70,9 +68,7 @@ public class Player extends Actor {
         }
     }
 
-
     public void move(int dx, int dy) {
-
         if (cell.getActor().getHealth() >= 1) {
             // move
             Cell nextCell = cell.getNeighbor(dx, dy);
@@ -96,58 +92,52 @@ public class Player extends Actor {
                 nextCell.setActor(this);
                 cell = nextCell;
                 if (nextCell.getItem() != null) {
-                    inventory.add(nextCell.getItem());
+                    Item foundItem = nextCell.getItem();
+                    inventory.addItem(foundItem);
                     nextCell.setItem(null);
-                    for (Item item : inventory) {
-                        if (item.getName().equals("black sword")) {
-                            hasSword = true;
-                            this.setAttack(10);
-                            System.out.println("Attack: " + this.attack);
-                        }
-                        if (item.getName().equals("enchanted ring")) {
-                            // Double the current health and max health
-                            this.setHealth(this.getHealth() * 2);
-                            this.setMaxHealth(this.getMaxHealth() * 2);
-                            System.out.println(this.getHealth());
-                            System.out.println(this.getMaxHealth());
-                        }
+
+                    if (this.inventory.hasItem("black sword")) {
+                        hasSword = true;
+                        this.setAttack(10);
+                        System.out.println("Attack: " + this.attack);
                     }
-                    for (Item item : inventory) {
-                        if (item.getName().equals("black key")) {
-                            hasKey = true;
-                            System.out.println("Now can open doors");
-                            break;
-                        }
+                    // double current & max hp
+                    if (foundItem.getName().equals("enchanted ring")) {
+                        this.setHealth(this.getHealth() * 2);
+                        this.setMaxHealth(this.getMaxHealth() * 2);
+                        System.out.println(this.getHealth());
+                        System.out.println(this.getMaxHealth());
                     }
-                    for (Item item : inventory) {
-                        if (item.getName().equals("teleport")) {
-                            System.out.println("...teleporting...");
-                            inventory.remove(item);
-                            boolean teleporting = true;
-                            while (teleporting) {
-                                int randX = new Random().nextInt(19);
-                                int randY = new Random().nextInt(5);
-                                if (cell.getNeighbor(randX, randY).getTileName().equals("floor")) {
-                                    nextCell = cell.getNeighbor(randX, randY);
-                                    teleporting = false;
-                                }
+
+                    if (foundItem.getName().equals("black key")) {
+                        hasKey = true;
+                        System.out.println("Now can open doors");
+                    }
+
+                    if (foundItem.getName().equals("teleport")) {
+                        System.out.println("...teleporting...");
+                        inventory.removeItem(foundItem.getName());
+                        boolean teleporting = true;
+                        while (teleporting) {
+                            int randX = new Random().nextInt(19);
+                            int randY = new Random().nextInt(5);
+                            if (cell.getNeighbor(randX, randY).getTileName().equals("floor")) {
+                                nextCell = cell.getNeighbor(randX, randY);
+                                teleporting = false;
                             }
-                            nextCell.setActor(this);
-                            cell.setActor(null);
-                            cell = nextCell;
-                            break;
                         }
+                        nextCell.setActor(this);
+                        cell.setActor(null);
+                        cell = nextCell;
                     }
                 }
             }
-
-        } else {
-            return;
         }
 
-        if (cell.getActor().getHealth() < 1) {
+        if (this.getHealth() < 1) {
             cell.setActor(null);
             cell.setDeadPlayer(new DeadPlayer(cell));
         }
     }
 }
+

@@ -14,8 +14,5 @@ public class DeadPlayer extends Actor {
     public String getTileName() {
         return "dead";
     }
-    @Override
-    public void move(int dx, int dy){
-        System.out.println("Halott");
-    }
+
 }

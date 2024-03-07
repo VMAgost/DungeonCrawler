@@ -42,7 +42,7 @@ public class Player extends Actor {
         return inventory;
     }
 
-    @Override
+
     public void move(int dx, int dy) {
 
         if (cell.getActor().getHealth() >= 1) {

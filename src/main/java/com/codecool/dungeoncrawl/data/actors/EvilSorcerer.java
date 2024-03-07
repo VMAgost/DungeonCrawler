@@ -15,14 +15,14 @@ public class EvilSorcerer extends Enemy {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move() {
         Random random = new Random();
         int x, y;
         Cell newCell;
 
         do {
-            x = random.nextInt(cell.getGameMap().getWidth());
-            y = random.nextInt(cell.getGameMap().getHeight());
+            x = random.nextInt(cell.getGameMap().getWidth()-1);
+            y = random.nextInt(cell.getGameMap().getHeight()-1);
 
             newCell = cell.getGameMap().getCell(x, y);
         } while (newCell.getActor() != null || !newCell.getTileName().equals("floor"));

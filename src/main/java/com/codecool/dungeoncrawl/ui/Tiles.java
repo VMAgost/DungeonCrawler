@@ -42,6 +42,8 @@ public class Tiles {
         tileMap.put("frost", new Tile(20, 23));
         tileMap.put("dead", new Tile(1, 14));
         tileMap.put("enchanted ring", new Tile(14, 28));
+        tileMap.put("troll", new Tile(30, 6));
+
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

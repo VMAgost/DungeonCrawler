@@ -17,7 +17,7 @@ public class Ghost extends Enemy {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move() {
         Random random = new Random();
         int newX, newY;
         Cell newCell;

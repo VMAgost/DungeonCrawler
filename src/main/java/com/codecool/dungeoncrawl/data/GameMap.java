@@ -5,16 +5,20 @@ import com.codecool.dungeoncrawl.data.actors.EvilSorcerer;
 import com.codecool.dungeoncrawl.data.actors.Ghost;
 import com.codecool.dungeoncrawl.data.actors.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
 
     private Player player;
+    private List<Enemy> enemies;
 
-    private Ghost ghost;
-
-    private EvilSorcerer evilSorcerer;
+    public void addEnemy(Enemy enemy){
+        enemies.add(enemy);
+    }
 
     public void setWidth(int width) {
         this.width = width;
@@ -35,11 +39,18 @@ public class GameMap {
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
+        this.enemies = new ArrayList<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
+        }
+    }
+
+    public void moveEnemies(){
+        for(Enemy enemy : enemies) {
+            enemy.move();
         }
     }
 
@@ -56,18 +67,7 @@ public class GameMap {
     public void setPlayer(Player player) {
         this.player = player;
     }
-    public Ghost getGhost() {
-        return ghost;
-    }
-    public void setGhost(Ghost ghost) {
-        this.ghost = ghost;
-    }
-    public EvilSorcerer getEvilSorcerer() {
-        return evilSorcerer;
-    }
-    public void setEvilSorcerer(EvilSorcerer evilSorcerer) {
-        this.evilSorcerer = evilSorcerer;
-    }
+
 
     public int getWidth() {
         return width;

@@ -3,10 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.EvilSorcerer;
-import com.codecool.dungeoncrawl.data.actors.Ghost;
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.actors.*;
 import com.codecool.dungeoncrawl.data.items.EnchantedRing;
 import com.codecool.dungeoncrawl.data.items.Key;
 import com.codecool.dungeoncrawl.data.items.Sword;
@@ -19,7 +16,7 @@ import java.util.Scanner;
 
 public class MapLoader {
     public static GameMap loadMap() {
-        InputStream is = MapLoader.class.getResourceAsStream("/map.txt");
+        InputStream is = MapLoader.class.getResourceAsStream("/map2.txt");
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
@@ -60,11 +57,11 @@ public class MapLoader {
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
-                            map.setGhost(new Ghost(cell));
+                            map.addEnemy(new Ghost(cell));
                             break;
                         case 'e':
                             cell.setType(CellType.FLOOR);
-                            map.setEvilSorcerer(new EvilSorcerer(cell));
+                            map.addEnemy(new EvilSorcerer(cell));
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
@@ -88,6 +85,10 @@ public class MapLoader {
                         case 'f':
                             cell.setType(CellType.FLOOR);
                             new Frost(cell);
+                            break;
+                        case 'z':
+                            cell.setType(CellType.FLOOR);
+                            map.addEnemy(new Troll(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

@@ -18,27 +18,28 @@ public class Ghost extends Enemy {
 
     @Override
     public void move(int dx, int dy) {
-
         Random random = new Random();
-        int direction = random.nextInt(4);
+        int newX, newY;
+        Cell newCell;
 
-        if (this.getHealth() > 0) {
-            switch (direction) {
-                case 0:
-                    super.move(-1, 0);
-                    break;
-                case 1:
-                    super.move(1, 0);
-                    break;
-                case 2:
-                    super.move(0, -1);
-                    break;
-                case 3:
-                    super.move(0, 1);
-                    break;
-                default:
-                    break;
-            }
-        }
+        do {
+            int randomX = random.nextInt(3) - 1;
+            int randomY = random.nextInt(3) - 1;
+
+            newX = cell.getX() + randomX;
+            newY = cell.getY() + randomY;
+
+            newX = Math.max(0, Math.min(cell.getGameMap().getWidth() - 1, newX));
+            newY = Math.max(0, Math.min(cell.getGameMap().getHeight() - 1, newY));
+
+            newCell = cell.getGameMap().getCell(newX, newY);
+        } while (newCell == null);
+
+        cell.setActor(null);
+        newCell.setActor(this);
+        cell = newCell;
     }
+
+
+
 }

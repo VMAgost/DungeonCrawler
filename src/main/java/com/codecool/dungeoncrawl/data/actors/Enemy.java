@@ -9,4 +9,13 @@ public abstract class  Enemy extends Actor {
     public Enemy(Cell cell, int attack, int health) {
         super(cell, attack, health);
     }
+
+    @Override
+    public void move(int dx, int dy) {
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        cell.setActor(null);
+        nextCell.setActor(this);
+        cell = nextCell;
+        System.out.println("POKEMON");
+    }
 }

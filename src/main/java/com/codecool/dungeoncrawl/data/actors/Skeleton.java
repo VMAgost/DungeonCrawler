@@ -11,4 +11,9 @@ public class Skeleton extends Enemy {
     public String getTileName() {
         return "skeleton";
     }
+
+    @Override
+    public void move(){
+        return;
+    }
 }

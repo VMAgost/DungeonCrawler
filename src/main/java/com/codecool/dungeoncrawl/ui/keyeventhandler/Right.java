@@ -11,8 +11,7 @@ public class Right implements KeyHandler {
     public void perform(KeyEvent event, GameMap map) {
         if(code.equals(event.getCode())) {
             map.getPlayer().move(1, 0);
-            map.getGhost().move(1, 0);
-            map.getEvilSorcerer().move(1, 0);
+
         }
     }
 }

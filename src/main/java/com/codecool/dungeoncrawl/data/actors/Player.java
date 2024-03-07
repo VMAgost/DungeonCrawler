@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.items.Item;
+import com.codecool.dungeoncrawl.data.mapObjects.Door;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,26 +51,14 @@ public class Player extends Actor {
             Cell nextCell = cell.getNeighbor(dx, dy);
             if (nextCell.getTileName().equals("wall") || nextCell.getActor() != null) {
                 // Door
-                if (nextCell.getDoor() != null && this.hasKey) {
-                    nextCell.getDoor().setOpen();
-                } else if (nextCell.getDoor() != null && this.hasSword) {
-                    nextCell.getDoor().attackDoor();
-                    if (nextCell.getDoor().getBreakAttempts() == 5) {
-                        nextCell.getDoor().breakOpen();
-                    }
-                }
+                interactWithDoor(nextCell);
                 // Attack
+
                 if (nextCell.getActor() instanceof Enemy) {
-                    System.out.println("Enemy found");
-                    nextCell.getActor().setHealth(nextCell.getActor().getHealth() - this.attack);
-                    System.out.println(nextCell.getActor().getHealth());
-                    if (nextCell.getActor().getHealth() <= 0) {
-                        nextCell.setActor(null);   // Monster dies
-                    } else {
-                        this.setHealth(this.getHealth() - nextCell.getActor().attack);  // Player lose health
-                        System.out.println(this.getHealth());
-                    }
+                    Enemy enemy = (Enemy) nextCell.getActor();
+                    attackEnemy(enemy);
                 }
+
             } else {
                 // FrostDamage
                 if (nextCell.getFrost() != null) {

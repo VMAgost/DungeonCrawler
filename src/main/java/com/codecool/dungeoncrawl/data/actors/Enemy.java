@@ -10,5 +10,7 @@ public abstract class  Enemy extends Actor {
         super(cell, attack, health);
     }
 
+
     public abstract void move();
+
 }

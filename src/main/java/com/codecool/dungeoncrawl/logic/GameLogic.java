@@ -37,7 +37,7 @@ public class GameLogic {
 
     public String getPlayerInventory(){
         StringBuilder inventoryItems = new StringBuilder();
-        for(Item item : map.getPlayer().getInventory()){
+        for(Item item : map.getPlayer().getInventory().getItems()){
             inventoryItems.append(item.getName()).append("\n");
         }
         return inventoryItems.toString();

@@ -1,6 +1,8 @@
 
 # Dungeon Crawler Game
 
+![image](src/main/resources/img.png)
+
 ## Introduction
 
 This project was a teamwork assignment at CodeCool: We had to create a dungeon crawler-style video game using the JavaFX library.

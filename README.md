@@ -84,7 +84,6 @@ After installation:
 - If you need to exit the game, press `Q` or close the window manually.
 - In-game controls are displayed in the top-right corner of the window.
 
-![Gameplay Screenshot](../development/screen2.PNG)
 
 ## Built With
 
@@ -94,17 +93,17 @@ After installation:
 
 ---
 
-[contributors-shield]: https://img.shields.io/github/contributors/VMAgost/DungeonCrawler/
+[contributors-shield]: https://img.shields.io/github/contributors/VMAgost/DungeonCrawler
 [contributors-url]: https://github.com/VMAgost/DungeonCrawler/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/VMAgost/DungeonCrawler/?style=social
-[forks-url]: https://github.com/your-repo/dungeon-crawler-game/network/members
+[forks-shield]: https://img.shields.io/github/forks/VMAgost/DungeonCrawler?style=social
+[forks-url]: https://github.com/VMAgost/DungeonCrawler/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/VMAgost/DungeonCrawler/?style=social
-[stars-url]: https://github.com/your-repo/dungeon-crawler-game/stargazers
+[stars-shield]: https://img.shields.io/github/stars/VMAgost/DungeonCrawler?style=social
+[stars-url]: https://github.com/VMAgost/DungeonCrawler/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/VMAgost/DungeonCrawler/
-[issues-url]: https://github.com/your-repo/dungeon-crawler-game/issues
+[issues-shield]: https://img.shields.io/github/issues/VMAgost/DungeonCrawler
+[issues-url]: https://github.com/VMAgost/DungeonCrawler/issues
 
 [linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 [linkedin-url-vmagost]: https://www.linkedin.com/in/jane-doe/

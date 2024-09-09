@@ -106,7 +106,7 @@ After installation:
 [issues-url]: https://github.com/VMAgost/DungeonCrawler/issues
 
 [linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
-[linkedin-url-vmagost]: https://www.linkedin.com/in/jane-doe/
+[linkedin-url-vmagost]: https://www.linkedin.com/in/vmagost/
 [linkedin-url-idlewombat]: https://www.linkedin.com/in/bence-futasz/
 
 [java-shield]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
